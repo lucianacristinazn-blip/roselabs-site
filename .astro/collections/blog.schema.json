@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "titulo": {
+      "type": "string"
+    },
+    "tituloSEO": {
+      "type": "string"
+    },
+    "idioma": {
+      "type": "string",
+      "enum": [
+        "pt",
+        "en"
+      ]
+    },
+    "categoria": {
+      "type": "string",
+      "enum": [
+        "crescimento-sustentavel",
+        "inteligencia-artificial",
+        "lideranca"
+      ]
+    },
+    "imagemCapa": {
+      "type": "string"
+    },
+    "resumo": {
+      "type": "string"
+    },
+    "data": {
+      "type": "string"
+    },
+    "destaque": {
+      "default": false,
+      "type": "boolean"
+    },
+    "rascunho": {
+      "default": true,
+      "type": "boolean"
+    },
+    "tempoLeitura": {
+      "default": 5,
+      "type": "number"
+    },
+    "palavraChave": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "titulo",
+    "idioma",
+    "categoria",
+    "resumo",
+    "data"
+  ]
+}

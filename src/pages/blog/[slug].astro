@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const artigos = await getCollection('blog');
+  return artigos.map(a => ({ params: { slug: a.id }, props: { artigo: a } }));
+}
+
+const { artigo } = Astro.props;
+if (artigo.data.rascunho) return Astro.redirect('/blog');
+
+const { Content } = await render(artigo);
+const titleParaSEO = artigo.data.tituloSEO || artigo.data.titulo;
+
+const cats = {
+  'crescimento-sustentavel': '🌱 Crescimento Sustentável',
+  'inteligencia-artificial': '🤖 Inteligência Artificial',
+  'lideranca': '🧭 Liderança',
+};
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": artigo.data.titulo,
+  "description": artigo.data.resumo,
+  "author": {"@type": "Person", "name": "Luciana Zanon", "url": "https://roselabs.com.br/sobre"},
+  "publisher": {"@type": "Organization", "name": "Rose Labs", "url": "https://roselabs.com.br"},
+  "datePublished": artigo.data.data,
+  "image": artigo.data.imagemCapa ? `https://roselabs.com.br${artigo.data.imagemCapa}` : "https://roselabs.com.br/foto-luciana-hero.jpg",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": `https://roselabs.com.br/blog/${artigo.id}`},
+  "keywords": artigo.data.palavraChave || ""
+});
+
+const faqItems = [];
+const content = await render(artigo);
+---
+<Layout
+  title={titleParaSEO}
+  description={artigo.data.resumo}
+  ogImage={artigo.data.imagemCapa || '/foto-luciana-hero.jpg'}
+  type="article"
+  publishedDate={artigo.data.data}
+>
+
+<script type="application/ld+json" set:html={articleSchema}/>
+
+<section style="padding:8rem 0 0;background:var(--carvao);">
+  <div class="container" style="max-width:780px;">
+    <div style="display:flex;gap:.75rem;align-items:center;margin-bottom:2rem;flex-wrap:wrap;">
+      <a href="/blog" style="font-size:.8rem;color:var(--cinza-quente);">← Blog</a>
+      <span style="color:rgba(212,206,204,.3);">·</span>
+      <span style="font-size:.75rem;color:var(--ocre);">{cats[artigo.data.categoria]}</span>
+      <span style="color:rgba(212,206,204,.3);">·</span>
+      <span style="font-size:.75rem;color:rgba(212,206,204,.4);">{artigo.data.idioma === 'pt' ? '🇧🇷 Português' : '🇺🇸 English'}</span>
+    </div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:500;color:var(--off-white);line-height:1.2;margin-bottom:1.5rem;">{artigo.data.titulo}</h1>
+    <div style="display:flex;gap:1.5rem;align-items:center;padding-bottom:2rem;border-bottom:1px solid rgba(212,206,204,.1);margin-bottom:2.5rem;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:.75rem;">
+        <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0;">
+          <img src="/foto-luciana-sobre.jpg" alt="Luciana Zanon" style="width:100%;height:100%;object-fit:cover;object-position:center top;" loading="lazy"/>
+        </div>
+        <div>
+          <div style="font-size:.8rem;font-weight:500;color:var(--off-white);">Luciana Zanon</div>
+          <div style="font-size:.72rem;color:rgba(212,206,204,.4);">Rose Labs</div>
+        </div>
+      </div>
+      <span style="color:rgba(212,206,204,.2);">·</span>
+      <time datetime={artigo.data.data} style="font-size:.75rem;color:rgba(212,206,204,.4);">{artigo.data.tempoLeitura} min de leitura</time>
+    </div>
+    {artigo.data.imagemCapa && (
+      <div style="margin-bottom:2.5rem;border-radius:12px;overflow:hidden;aspect-ratio:16/9;">
+        <img src={artigo.data.imagemCapa} alt={artigo.data.titulo} style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
+      </div>
+    )}
+  </div>
+</section>
+
+<section style="padding:0 0 5rem;background:var(--carvao);">
+  <div class="container" style="max-width:780px;">
+    <article class="prose"><Content/></article>
+    <div style="margin-top:4rem;padding:2rem;background:rgba(123,59,59,.08);border:1px solid rgba(123,59,59,.25);border-radius:12px;text-align:center;">
+      <p style="font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--off-white);margin-bottom:.5rem;">Quer conversar sobre o momento da sua empresa?</p>
+      <p style="font-size:.875rem;color:var(--cinza-quente);margin-bottom:1.5rem;">Uma conversa inicial para compreender seus desafios — sem compromisso.</p>
+      <a href="https://wa.me/5531993557780" class="btn btn-primary" target="_blank" rel="noopener" style="font-size:.9rem;padding:.875rem 2rem;">Falar com a Luciana →</a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+.prose{color:var(--cinza-quente);font-size:1.0625rem;line-height:1.85;}
+.prose h2{font-family:var(--font-display);font-size:1.6rem;font-weight:500;color:var(--off-white);margin:2.5rem 0 1rem;}
+.prose h3{font-family:var(--font-display);font-size:1.2rem;font-weight:500;color:var(--off-white);margin:2rem 0 .75rem;}
+.prose p{max-width:none;margin-bottom:1.25rem;}
+.prose strong{color:var(--off-white);font-weight:500;}
+.prose em{font-style:italic;color:var(--ocre);}
+.prose a{color:var(--azul-light);text-decoration:underline;text-underline-offset:3px;}
+.prose a:hover{color:var(--ocre);}
+.prose ul,.prose ol{padding-left:1.5rem;margin-bottom:1.25rem;}
+.prose li{margin-bottom:.5rem;}
+.prose hr{border:none;border-top:1px solid rgba(212,206,204,.1);margin:2.5rem 0;}
+.prose blockquote{border-left:2px solid var(--vinho);padding-left:1.25rem;margin:1.5rem 0;font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--off-white);}
+</style>

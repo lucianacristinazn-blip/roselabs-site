@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const todos = await getCollection('blog');
+
+// Só mostra artigos publicados (rascunho: false)
+const artigos = todos
+  .filter(a => !a.data.rascunho)
+  .sort((a, b) => new Date(b.data.data).getTime() - new Date(a.data.data).getTime());
+
+const totalRascunhos = todos.filter(a => a.data.rascunho).length;
+
+const categorias = {
+  'crescimento-sustentavel': '🌱 Crescimento Sustentável',
+  'inteligencia-artificial': '🤖 Inteligência Artificial',
+  'lideranca': '🧭 Liderança',
+};
+---
+<Layout title="Blog" description="Reflexões sobre crescimento sustentável, liderança e IA para líderes que buscam clareza antes da transformação. Em português e inglês.">
+
+<section style="padding:10rem 0 5rem;background:var(--carvao);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:50%;height:100%;background:radial-gradient(ellipse at 80% 30%,rgba(123,59,59,.15) 0%,transparent 60%);pointer-events:none;"></div>
+  <div class="container">
+    <span class="eyebrow fade-up">Blog</span>
+    <h1 class="fade-up fade-up-delay-1" style="max-width:16ch;">Reflexões sobre crescimento <em class="gold">sustentável.</em></h1>
+    <div class="divider fade-up fade-up-delay-2"></div>
+    <p class="fade-up fade-up-delay-2" style="font-size:1.1rem;color:var(--cinza-quente);max-width:52ch;">Perspectivas sobre liderança, crescimento organizacional e inteligência artificial — em português e inglês.</p>
+  </div>
+</section>
+
+<section class="s-mid">
+  <div class="container">
+
+    {artigos.length === 0 ? (
+      <div style="text-align:center;padding:4rem 0;">
+        <div style="width:64px;height:64px;border:1.5px solid rgba(46,95,163,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;"><span style="color:var(--azul);font-size:1.5rem;">✦</span></div>
+        <h3 style="font-size:1.25rem;margin-bottom:1rem;">Os primeiros artigos estão a caminho.</h3>
+        <p style="color:var(--cinza-quente);max-width:40ch;margin:0 auto 2rem;">Análises e reflexões sobre crescimento sustentável, liderança e inteligência artificial em construção.</p>
+        <a href="https://wa.me/5531993557780" class="btn btn-outline" target="_blank">Ser notificado quando publicar →</a>
+      </div>
+    ) : (
+      <>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:3rem;align-items:center;">
+          <button onclick="filtrar('todos')" class="filtro-btn" data-cat="todos" style="background:var(--vinho);color:var(--off-white);border:none;padding:.4rem 1rem;border-radius:4px;font-size:.75rem;font-weight:500;cursor:pointer;">Todos</button>
+          {Object.entries(categorias).map(([slug, label]) => (
+            <button onclick={`filtrar('${slug}')`} class="filtro-btn" data-cat={slug} style="background:transparent;color:var(--cinza-quente);border:1px solid rgba(212,206,204,.2);padding:.4rem 1rem;border-radius:4px;font-size:.75rem;cursor:pointer;">{label}</button>
+          ))}
+          <div style="margin-left:auto;display:flex;gap:.5rem;">
+            <button onclick="filtrarLang('todos')" class="lang-btn" data-lang="todos" style="background:rgba(123,59,59,.3);color:var(--off-white);border:1px solid rgba(212,206,204,.2);padding:.4rem .875rem;border-radius:4px;font-size:.75rem;cursor:pointer;">Todos</button>
+            <button onclick="filtrarLang('pt')" class="lang-btn" data-lang="pt" style="background:transparent;color:var(--cinza-quente);border:1px solid rgba(212,206,204,.2);padding:.4rem .875rem;border-radius:4px;font-size:.75rem;cursor:pointer;">🇧🇷 PT</button>
+            <button onclick="filtrarLang('en')" class="lang-btn" data-lang="en" style="background:transparent;color:var(--cinza-quente);border:1px solid rgba(212,206,204,.2);padding:.4rem .875rem;border-radius:4px;font-size:.75rem;cursor:pointer;">🇺🇸 EN</button>
+          </div>
+        </div>
+
+        <div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;">
+          {artigos.map(a => (
+            <article data-cat={a.data.categoria} data-lang={a.data.idioma} style="background:rgba(255,255,255,.03);border:1px solid rgba(212,206,204,.1);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:all .3s;">
+              {a.data.imagemCapa && (
+                <div style="height:160px;overflow:hidden;">
+                  <img src={a.data.imagemCapa} alt={a.data.titulo} style="width:100%;height:100%;object-fit:cover;"/>
+                </div>
+              )}
+              <div style="padding:1.75rem;display:flex;flex-direction:column;flex:1;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                  <span style="font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ocre);">{categorias[a.data.categoria]}</span>
+                  <span style="font-size:.7rem;color:rgba(212,206,204,.4);background:rgba(255,255,255,.04);padding:.2rem .6rem;border-radius:4px;">{a.data.idioma === 'pt' ? '🇧🇷' : '🇺🇸'}</span>
+                </div>
+                <h2 style="font-family:var(--font-display);font-size:1.2rem;font-weight:500;color:var(--off-white);line-height:1.3;margin-bottom:.875rem;flex:1;">{a.data.titulo}</h2>
+                <p style="font-size:.85rem;color:var(--cinza-quente);max-width:none;margin-bottom:1.25rem;line-height:1.6;">{a.data.resumo}</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid rgba(212,206,204,.08);">
+                  <span style="font-size:.72rem;color:rgba(212,206,204,.35);">{a.data.tempoLeitura} min</span>
+                  <a href={`/blog/${a.id}`} style="font-size:.8rem;color:var(--ocre);">Ler →</a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </>
+    )}
+  </div>
+</section>
+
+</Layout>
+
+<script>
+let cat = 'todos', lang = 'todos';
+function filtrar(c) {
+  cat = c;
+  update();
+  document.querySelectorAll('.filtro-btn').forEach(b => {
+    b.style.background = b.dataset.cat === c ? 'var(--vinho)' : 'transparent';
+    b.style.color = b.dataset.cat === c ? 'var(--off-white)' : 'var(--cinza-quente)';
+  });
+}
+function filtrarLang(l) {
+  lang = l;
+  update();
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.style.background = b.dataset.lang === l ? 'rgba(123,59,59,.3)' : 'transparent';
+    b.style.color = b.dataset.lang === l ? 'var(--off-white)' : 'var(--cinza-quente)';
+  });
+}
+function update() {
+  document.querySelectorAll('#grid article').forEach(el => {
+    const ok = (cat === 'todos' || el.dataset.cat === cat) && (lang === 'todos' || el.dataset.lang === lang);
+    el.style.display = ok ? 'flex' : 'none';
+  });
+}
+document.querySelectorAll('#grid article').forEach(card => {
+  card.addEventListener('mouseenter', () => { card.style.borderColor = 'rgba(123,59,59,.4)'; card.style.transform = 'translateY(-3px)'; });
+  card.addEventListener('mouseleave', () => { card.style.borderColor = 'rgba(212,206,204,.1)'; card.style.transform = 'translateY(0)'; });
+});
+</script>

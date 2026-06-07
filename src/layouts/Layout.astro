@@ -1,0 +1,133 @@
+---
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  type?: 'website' | 'article';
+  publishedDate?: string;
+}
+const {
+  title,
+  description = 'Rose Labs — Integrando pessoas, propósito e tecnologia na mesma direção. Consultoria estratégica de crescimento sustentável.',
+  ogImage = '/foto-luciana-hero.jpg',
+  type = 'website',
+  publishedDate
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = `${title} | Rose Labs`;
+const orgSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rose Labs",
+  "url": "https://roselabs.com.br",
+  "logo": "https://roselabs.com.br/favicon.svg",
+  "description": "Consultoria estratégica de crescimento sustentável. Integrando pessoas, propósito e tecnologia na mesma direção.",
+  "founder": {"@type": "Person", "name": "Luciana Zanon"},
+  "contactPoint": {"@type": "ContactPoint", "contactType": "customer service", "url": "https://wa.me/5531993557780"}
+});
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href={canonicalURL}/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={type}/>
+  <meta property="og:url" content={canonicalURL}/>
+  <meta property="og:title" content={fullTitle}/>
+  <meta property="og:description" content={description}/>
+  <meta property="og:image" content={`https://roselabs.com.br${ogImage}`}/>
+  <meta property="og:site_name" content="Rose Labs"/>
+  <meta property="og:locale" content="pt_BR"/>
+  {publishedDate && <meta property="article:published_time" content={publishedDate}/>}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content={fullTitle}/>
+  <meta name="twitter:description" content={description}/>
+  <meta name="twitter:image" content={`https://roselabs.com.br${ogImage}`}/>
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json" set:html={orgSchema}/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+</head>
+<body>
+  <nav class="nav" id="main-nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">Rose<span> Labs</span></a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/sobre">Quem Somos</a></li>
+        <li><a href="/metodologia">Metodologia</a></li>
+        <li><a href="/servicos">Serviços</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contato" class="btn btn-primary" style="padding:.5rem 1.25rem;font-size:.75rem;">Conversar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main><slot/></main>
+
+  <footer>
+    <div class="container">
+      <div class="grid-3" style="margin-bottom:3rem;gap:3rem;">
+        <div>
+          <div class="nav-logo" style="font-size:1.5rem;margin-bottom:1rem;">Rose<span style="color:var(--vinho);"> Labs</span></div>
+          <p style="font-size:.875rem;color:var(--cinza-quente);max-width:28ch;">Integrando pessoas, propósito e tecnologia na mesma direção.</p>
+          <p style="font-family:var(--font-display);font-style:italic;font-size:.95rem;color:var(--ocre);margin-top:.75rem;">"Clareza antes da transformação."</p>
+        </div>
+        <div>
+          <span class="eyebrow" style="margin-bottom:1.25rem;">Navegação</span>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;">
+            <li><a href="/sobre" style="font-size:.875rem;color:var(--cinza-quente);">Quem Somos</a></li>
+            <li><a href="/metodologia" style="font-size:.875rem;color:var(--cinza-quente);">Metodologia</a></li>
+            <li><a href="/servicos" style="font-size:.875rem;color:var(--cinza-quente);">Serviços</a></li>
+            <li><a href="/blog" style="font-size:.875rem;color:var(--cinza-quente);">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="eyebrow" style="margin-bottom:1.25rem;">Contato</span>
+          <p style="font-size:.875rem;color:var(--cinza-quente);margin-bottom:1.5rem;">Pronta para entender o momento da sua empresa.</p>
+          <a href="https://wa.me/5531993557780" class="btn btn-primary" style="font-size:.8125rem;" target="_blank" rel="noopener">WhatsApp →</a>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(212,206,204,.1);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;">
+        <p style="font-size:.75rem;color:rgba(212,206,204,.4);">© 2026 Rose Labs. Todos os direitos reservados.</p>
+        <p style="font-size:.75rem;color:rgba(212,206,204,.4);">Luciana Zanon · Arquiteta de Crescimento Sustentável</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => nav?.classList.toggle('scrolled', window.scrollY > 50));
+    const p = window.location.pathname;
+    document.querySelectorAll('.nav-links a').forEach(l => {
+      const h = l.getAttribute('href');
+      if (h === p || (h !== '/' && p.startsWith(h))) l.classList.add('active');
+    });
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('nav-menu');
+    hamburger?.addEventListener('click', () => {
+      const open = menu?.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (e) => {
+      if (!nav?.contains(e.target as Node)) menu?.classList.remove('open');
+    });
+  </script>
+</body>
+</html>

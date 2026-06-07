@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Integrando pessoas, propósito e tecnologia na mesma direção">
+
+<!-- HERO -->
+<section style="min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding-top:5rem;background:var(--carvao);position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(123,59,59,0.15) 0%,transparent 60%);pointer-events:none;"></div>
+  <div class="container" style="position:relative;z-index:1;grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+    <div style="padding:3rem 0;">
+      <span class="eyebrow fade-up">Rose Labs</span>
+      <h1 class="fade-up fade-up-delay-1">Integrando pessoas, propósito e tecnologia <em class="gold">na mesma direção.</em></h1>
+      <div class="divider fade-up fade-up-delay-2"></div>
+      <p class="fade-up fade-up-delay-2" style="font-size:1.05rem;color:var(--cinza-quente);margin-bottom:.875rem;">Se você se preocupa com sua equipe, com a qualidade da sua entrega e acredita que a IA será parte importante do futuro da sua empresa, já está alguns passos à frente da maioria.</p>
+      <p class="fade-up fade-up-delay-2" style="font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--off-white);margin-bottom:2rem;">Os líderes que se destacarão na próxima década serão aqueles capazes de alinhar pessoas, processos e inteligência artificial em torno de uma mesma direção.</p>
+      <div class="fade-up fade-up-delay-3" style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="/metodologia" class="btn btn-primary">Conheça nossa metodologia →</a>
+        <a href="https://wa.me/5531993557780" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Agendar conversa</a>
+      </div>
+    </div>
+    <div style="position:relative;height:600px;overflow:hidden;border-radius:12px;">
+      <img src="/foto-luciana-hero.jpg" alt="Luciana Zanon — Rose Labs" style="width:100%;height:100%;object-fit:cover;object-position:center top;" loading="eager" fetchpriority="high"/>
+    </div>
+  </div>
+</section>
+
+<!-- DESAFIO -->
+<section class="s-mid">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <span class="eyebrow">O desafio</span>
+      <h2>A tecnologia está evoluindo mais rápido do que<br/><em class="gold">muitas empresas conseguem se adaptar.</em></h2>
+      <div class="divider divider-center"></div>
+      <p style="color:var(--cinza-quente);max-width:52ch;margin:0 auto;">Quando não existe clareza sobre o impacto da mudança, muitas empresas acabam enfrentando:</p>
+    </div>
+    <div class="grid-2" style="gap:1rem;max-width:800px;margin:0 auto 3rem;">
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);margin-top:.1rem;">→</span><p style="font-size:.875rem;color:var(--cinza-quente);max-width:none;">Aumento de retrabalho e reclamações</p></div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);margin-top:.1rem;">→</span><p style="font-size:.875rem;color:var(--cinza-quente);max-width:none;">Investimentos em IA sem retorno claro</p></div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);margin-top:.1rem;">→</span><p style="font-size:.875rem;color:var(--cinza-quente);max-width:none;">Equipes resistentes às novas formas de trabalho</p></div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);margin-top:.1rem;">→</span><p style="font-size:.875rem;color:var(--cinza-quente);max-width:none;">Perda de oportunidades por falta de alinhamento</p></div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);margin-top:.1rem;">→</span><p style="font-size:.875rem;color:var(--cinza-quente);max-width:none;">Processos mais rápidos, mas não necessariamente melhores</p></div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);margin-top:.1rem;">→</span><p style="font-size:.875rem;color:var(--cinza-quente);max-width:none;">Falhas de comunicação e desalinhamento entre áreas</p></div>
+    </div>
+    <div style="background:rgba(123,59,59,.1);border-left:2px solid var(--vinho);padding:1.5rem 2rem;border-radius:0 8px 8px 0;max-width:700px;margin:0 auto;">
+      <p style="font-family:var(--font-display);font-style:italic;font-size:1.3rem;color:var(--off-white);max-width:none;line-height:1.5;">A tecnologia acelera resultados. Mas também acelera problemas que ainda não foram compreendidos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMO CONDUZIMOS -->
+<section class="s-dark">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <span class="eyebrow">Como conduzimos essa jornada</span>
+      <h2>A transformação não começa pela tecnologia.<br/><em class="gold">Começa pela clareza.</em></h2>
+      <div class="divider divider-center"></div>
+      <p style="color:var(--cinza-quente);max-width:54ch;margin:0 auto;">Antes de implementar mudanças, entendemos como pessoas, processos e tecnologia interagem dentro da sua organização.</p>
+    </div>
+    <div style="display:flex;align-items:stretch;gap:.5rem;max-width:900px;margin:0 auto 3rem;">
+      <div class="card" style="flex:1;text-align:center;">
+        <div style="font-size:.75rem;font-weight:500;color:var(--azul-light);letter-spacing:.08em;border:2px solid var(--azul-light);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;font-family:var(--font-display);">1</div>
+        <div style="font-size:.8rem;font-weight:500;color:var(--ocre);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;">Compreender</div>
+        <p style="font-size:.8rem;color:var(--cinza-quente);max-width:none;">Como pessoas, processos, tecnologia e propósito interagem na organização</p>
+      </div>
+      <div class="flow-arrow" style="display:flex;align-items:center;font-size:1.25rem;">→</div>
+      <div class="card" style="flex:1;text-align:center;">
+        <div style="font-size:.75rem;font-weight:500;color:var(--azul-light);letter-spacing:.08em;border:2px solid var(--azul-light);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;font-family:var(--font-display);">2</div>
+        <div style="font-size:.8rem;font-weight:500;color:var(--ocre);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;">Revelar</div>
+        <p style="font-size:.8rem;color:var(--cinza-quente);max-width:none;">Riscos, gargalos e oportunidades que permanecem invisíveis no dia a dia</p>
+      </div>
+      <div class="flow-arrow" style="display:flex;align-items:center;font-size:1.25rem;">→</div>
+      <div class="card" style="flex:1;text-align:center;">
+        <div style="font-size:.75rem;font-weight:500;color:var(--azul-light);letter-spacing:.08em;border:2px solid var(--azul-light);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;font-family:var(--font-display);">3</div>
+        <div style="font-size:.8rem;font-weight:500;color:var(--ocre);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;">Priorizar</div>
+        <p style="font-size:.8rem;color:var(--cinza-quente);max-width:none;">Transformamos complexidade em um plano claro e executável</p>
+      </div>
+      <div class="flow-arrow" style="display:flex;align-items:center;font-size:1.25rem;">→</div>
+      <div class="card" style="flex:1;text-align:center;">
+        <div style="font-size:.75rem;font-weight:500;color:var(--azul-light);letter-spacing:.08em;border:2px solid var(--azul-light);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;font-family:var(--font-display);">4</div>
+        <div style="font-size:.8rem;font-weight:500;color:var(--ocre);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;">Evoluir</div>
+        <p style="font-size:.8rem;color:var(--cinza-quente);max-width:none;">Construímos as bases para uma transformação sustentável</p>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <a href="/metodologia" class="btn btn-outline">Entenda melhor nossa metodologia →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section class="s-mid">
+  <div class="container">
+    <div style="max-width:760px;margin:0 auto;">
+      <span class="eyebrow">Para quem é a Rose Labs</span>
+      <h2>Para líderes que acreditam no equilíbrio entre <em class="gold">inovação e humanidade.</em></h2>
+      <div class="divider"></div>
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem;">
+        <div style="display:flex;gap:.875rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);font-size:.9rem;margin-top:.1rem;">✓</span><p style="font-size:.9rem;color:var(--cinza-quente);max-width:none;">Acreditam que a IA deve fortalecer pessoas, não substituí-las</p></div>
+        <div style="display:flex;gap:.875rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);font-size:.9rem;margin-top:.1rem;">✓</span><p style="font-size:.9rem;color:var(--cinza-quente);max-width:none;">Desejam crescer sem perder qualidade, cultura e direção</p></div>
+        <div style="display:flex;gap:.875rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);font-size:.9rem;margin-top:.1rem;">✓</span><p style="font-size:.9rem;color:var(--cinza-quente);max-width:none;">Enxergam tecnologia como meio, não como fim</p></div>
+        <div style="display:flex;gap:.875rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);font-size:.9rem;margin-top:.1rem;">✓</span><p style="font-size:.9rem;color:var(--cinza-quente);max-width:none;">Querem tomar decisões com mais clareza e menos improviso</p></div>
+        <div style="display:flex;gap:.875rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(212,206,204,.08);border-radius:8px;background:rgba(255,255,255,.02);"><span style="color:var(--vinho);font-size:.9rem;margin-top:.1rem;">✓</span><p style="font-size:.9rem;color:var(--cinza-quente);max-width:none;">Entendem que as empresas mais fortes da próxima década integrarão inovação e execução</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="s-dark">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span class="eyebrow">Nossos serviços</span>
+      <h2>Toda transformação sustentável<br/><em class="gold">começa com clareza.</em></h2>
+      <div class="divider divider-center"></div>
+      <p style="color:var(--cinza-quente);max-width:48ch;margin:0 auto;">Estruturamos nossa atuação em duas etapas complementares.</p>
+    </div>
+
+    <!-- SERVIÇO 1 - centralizado -->
+    <div style="max-width:680px;margin:0 auto;">
+      <div class="card" style="border-color:rgba(123,59,59,.4);background:rgba(123,59,59,.05);">
+        <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+          <div class="num-circle">①</div>
+          <div>
+            <h3 style="font-size:1.1rem;margin-bottom:.5rem;">Diagnóstico de Crescimento Sustentável</h3>
+            <p style="font-size:.875rem;color:var(--cinza-quente);margin-bottom:1.25rem;">Descubra o que está impulsionando — ou limitando — o potencial da sua organização. Muitas empresas percebem os sintomas, mas não conseguem enxergar suas causas.</p>
+            <div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.25rem;">
+              <div class="check-item"><div class="dot">✓</div><p>Clareza sobre os desafios prioritários da organização</p></div>
+              <div class="check-item"><div class="dot">✓</div><p>Visibilidade sobre riscos que podem comprometer o crescimento</p></div>
+              <div class="check-item"><div class="dot">✓</div><p>Segurança para tomar decisões estratégicas</p></div>
+              <div class="check-item"><div class="dot">✓</div><p>Visão sistêmica da empresa além dos sintomas do dia a dia</p></div>
+            </div>
+            <a href="/servicos" style="font-size:.8rem;color:var(--ocre);">Conheça o Diagnóstico →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONECTOR -->
+      <div style="display:flex;justify-content:center;align-items:center;gap:1rem;padding:.875rem 0;">
+        <div style="flex:1;height:1px;background:rgba(46,95,163,.3);max-width:100px;"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:.2rem;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--azul);"></div>
+          <span style="font-size:.65rem;color:rgba(212,206,204,.35);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;">disponível após o diagnóstico</span>
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--azul);"></div>
+        </div>
+        <div style="flex:1;height:1px;background:rgba(46,95,163,.3);max-width:100px;"></div>
+      </div>
+
+      <!-- SERVIÇO 2 -->
+      <div class="card">
+        <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+          <div class="num-circle">②</div>
+          <div>
+            <h3 style="font-size:1.1rem;margin-bottom:.5rem;">Roadmap de Evolução Organizacional</h3>
+            <p style="font-size:.875rem;color:var(--cinza-quente);margin-bottom:1.25rem;">Transforme clareza em direção. Definimos quais mudanças merecem atenção e em que ordem devem acontecer.</p>
+            <div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.25rem;">
+              <div class="check-item"><div class="dot">✓</div><p>Prioridades claras para curto, médio e longo prazo</p></div>
+              <div class="check-item"><div class="dot">✓</div><p>Maior alinhamento entre liderança e equipes</p></div>
+              <div class="check-item"><div class="dot">✓</div><p>Confiança para investir em tecnologia e inovação</p></div>
+              <div class="check-item"><div class="dot">✓</div><p>Caminho estruturado para crescer com consistência</p></div>
+            </div>
+            <a href="/servicos" style="font-size:.8rem;color:var(--ocre);">Entenda a próxima etapa →</a>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align:center;margin-top:2rem;font-family:var(--font-display);font-style:italic;font-size:1rem;color:rgba(212,206,204,.5);">Não entregamos apenas diagnósticos ou planos. Entregamos clareza para que líderes possam tomar melhores decisões.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM SOMOS RESUMO -->
+<section class="s-mid">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:300px 1fr;gap:4rem;align-items:center;max-width:900px;margin:0 auto;">
+      <div style="border-radius:12px;overflow:hidden;aspect-ratio:3/4;">
+        <img src="/foto-luciana-sobre.jpg" alt="Luciana Zanon — Fundadora Rose Labs" style="width:100%;height:100%;object-fit:cover;object-position:center top;" loading="lazy"/>
+      </div>
+      <div>
+        <span class="eyebrow">Quem somos</span>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);">Acreditamos que empresas são <em class="gold">sistemas vivos.</em></h2>
+        <div class="divider"></div>
+        <p style="color:var(--cinza-quente);margin-bottom:1.25rem;">A Rose Labs nasceu da observação de um padrão que se repete em empresas de diferentes portes e setores: organizações investem em tecnologia e inovação, mas sem alinhamento entre propósito, pessoas e operação, frequentemente geram mais complexidade do que evolução.</p>
+        <p style="color:var(--cinza-quente);margin-bottom:2rem;">Hoje ajudamos líderes a transformar complexidade em clareza e construir organizações mais preparadas para os desafios da próxima década.</p>
+        <a href="/sobre" class="btn btn-outline">Conheça nossa história e filosofia →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="padding:6rem 0;background:linear-gradient(135deg,var(--carvao) 0%,#2a1515 50%,var(--carvao) 100%);text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(123,59,59,.2) 0%,transparent 60%);pointer-events:none;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <span class="eyebrow">O próximo passo</span>
+    <h2 style="margin-bottom:1.5rem;">Vamos conversar sobre o momento<br/><em class="gold">da sua organização?</em></h2>
+    <p style="color:var(--cinza-quente);max-width:48ch;margin:0 auto 2.5rem;">Uma conversa inicial para compreender seus desafios, trocar perspectivas e avaliar se faz sentido trabalharmos juntos.</p>
+    <a href="https://wa.me/5531993557780" class="btn btn-wa" style="font-size:1rem;padding:1rem 2.5rem;" target="_blank" rel="noopener noreferrer">Conversar no WhatsApp →</a>
+  </div>
+</section>
+
+</Layout>
